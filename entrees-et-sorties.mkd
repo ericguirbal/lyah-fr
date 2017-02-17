@@ -33,7 +33,7 @@ résultat basé sur les paramètres qu'on lui a donnés. Si une fonction est
 appelée deux fois avec les mêmes paramètres, elle doit retourner le même
 résultat. Bien que ça puisse paraître un peu limitant lorsqu'on vient d'un
 monde impératif, on a vu que c'est en fait plutôt sympa. Dans un langage
-impératif, vous n'avez aucune garantie qu'une fonction qui est sensée calculer
+impératif, vous n'avez aucune garantie qu'une fonction qui est censée calculer
 des nombres ne va pas brûler votre maison, kidnapper votre chien et rayer votre
 voiture avec une patate pendant qu'elle calcule ces nombres. Par exemple, quand
 on a fait un arbre binaire de recherche, on n'a pas inséré un élément dans un
@@ -43,7 +43,7 @@ modifier l'ancien.
 
 Bien qu'avoir des fonctions incapables de changer d'état soit bien puisque cela
 nous aide à raisonner sur nos programmes, il y a un problème avec ça. Si une
-fonction ne peut rien changer dans le monde, comment est-elle sensée nous dire
+fonction ne peut rien changer dans le monde, comment est-elle censée nous dire
 ce qu'elle a calculé ? Pour nous dire ce qu'elle a calculé, elle doit pouvoir
 changer l'état d'un matériel de sortie (généralement, l'état de notre écran),
 qui va ensuite émettre des photons qui voyageront jusqu'à notre cerveau pour
@@ -85,7 +85,7 @@ Pour commencer, tapez ceci dans votre éditeur de texte favori&nbsp;:
 
 On vient juste de définir un nom `main`, qui consiste à appeler `putStrLn` avec
 le paramètre `"hello, world"`. Ça semble plutôt banal, mais ça ne l'est pas,
-comme on va le voir bientôt. Sauvegardez ce fichier comme `helloworld.hs`.
+comme on va le voir bientôt. Sauvegardez ce fichier sous `helloworld.hs`.
 
 Et maintenant, on va faire quelque chose sans précédent. On va réellement
 compiler notre programme ! Je suis tellement ému ! Ouvrez votre terminal et
@@ -291,13 +291,13 @@ Remarquez comme les actions I/O dans le bloc *do* sont alignées. Notez
 sont alignés les uns aux autres. C'est important, parce que l'indentation
 importe en Haskell. Ici, on a fait `map toUpper firstName`, qui transforme
 quelque chose comme `"John"` en une chaîne de caractères bien plus cool comme
-`"JOHN"`. On a lié cette chaîne de caractères majuscules à un nom, puis utilisé
+`"JOHN"`. On a lié cette chaîne de caractères en capitales à un nom, puis utilisé
 ce nom dans une chaîne de caractères qu'on a affichée sur le terminal plus
 tard.
 
 Vous vous demandez peut-être quand utiliser `<-` et quand utiliser des liaisons
 *let* ? Eh bien, souvenez-vous, `<-` sert (pour l'instant) à effectuer des
-actions I/O et lier leur résultat à des noms. `map toUpper firstName`,
+actions I/O et lier leurs résultats à des noms. `map toUpper firstName`,
 cependant, n'est pas une action I/O. C'est une expression pure en Haskell.
 Donc, utilisez `<-` quand vous voulez lier le résultat d'une action I/O à un
 nom et utiliser une liaison *let* pour lier une expression pure à un nom. Si on
@@ -630,7 +630,7 @@ de nos actions séquencées.
 `forever` prend une action I/O et retourne une action I/O qui répète la
 première indéfiniment. Elle est dans `Control.Monad`. Ce programme va demander
 indéfiniment à l'utilisateur une entrée, et va la recracher en
-MAJUSCULES&nbsp;:
+LETTRES CAPITALES&nbsp;:
 
 > import Control.Monad
 > import Data.Char
@@ -743,8 +743,8 @@ Ouais, le haïku est pourri, mais bon ? Si quelqu'un connaît un tutoriel de
 haïkus, je suis preneur.
 
 Bien, souvenez-vous de ce programme qu'on a écrit en introduisant la fonction
-`forever`. Il demandait à l'utilisateur une ligne, et lui retournait en
-MAJUSCULES, puis recommençait, indéfiniment. Pour vous éviter de remonter tout
+`forever`. Il demandait à l'utilisateur une ligne, et la lui retournait en
+LETTRES CAPITALES, puis recommençait, indéfiniment. Pour vous éviter de remonter tout
 là-haut, je vous la remets ici&nbsp;:
 
 > import Control.Monad
@@ -797,8 +797,8 @@ Puis on mappe `toUpper` sur cette chaîne, et on l'affiche sur le terminal.
 Gardez en tête que puisque les chaînes de caractères sont simplement des
 listes, qui sont paresseuses, et que `getContents` est aussi paresseuse en
 entrée-sortie, cela ne va pas essayer de lire tout le contenu et de le stocker
-en mémoire avant d'afficher la version en majuscules. Plutôt, cela va afficher
-la version en majuscule au fur et à mesure de la lecture, parce que cela ne
+en mémoire avant d'afficher la version en lettres capitales. Plutôt, cela va afficher
+la version en capitales au fur et à mesure de la lecture, parce que cela ne
 lira une ligne de l'entrée que lorsque ce sera nécessaire.
 
 > $ cat haiku.txt | ./capslocker
@@ -816,13 +816,13 @@ lignes nous-même ?
 > LETS GO
 
 On a quitté le programme en tapant Ctrl-D. Plutôt joli ! Comme vous voyez, cela
-affiche nos caractères en majuscules ligne après ligne. Quand le résultat de
+affiche nos caractères en capitales ligne après ligne. Quand le résultat de
 `getContents` est lié à `contents`, ce n'est pas représenté en mémoire comme
 une vraie chaîne de caractères, mais plutôt comme une promesse de produire
 cette chaîne de caractères en temps voulu. Quand on mappe `toUpper` sur
 `contents`, c'est aussi une promesse de mapper la fonction sur le contenu une
 fois qu'il sera disponible. Et finalement, quand `putStr` est exécuté, il dit à
-la promesse précédente&nbsp;: "_Hé, j'ai besoin des lignes en majuscules !_".
+la promesse précédente&nbsp;: "_Hé, j'ai besoin des lignes en lettres capitales !_".
 Celle-ci n'a pas encore les lignes, alors elle demande à `contents`&nbsp;:
 "_Hé, pourquoi tu n'irais pas chercher ces lignes dans le terminal à présent
 ?_".  C'est à ce moment que `getContents` va vraiment lire le terminal et
@@ -1175,7 +1175,7 @@ manuellement, donc Haskell le fait tout seul quand on utilise `readFile`.
 un chemin vers un fichier et une chaîne de caractères à écrire dans ce fichier
 et retourne une action I/O qui effectuera l'écriture. Si le fichier existe
 déjà, il sera écrasé complètement avant que l'écriture ne commence. Voici
-comment transformer *girlfriend.txt* en une version en MAJUSCULES et écrire
+comment transformer *girlfriend.txt* en une version en LETTRES CAPITALES et écrire
 cette version dans *girlfriendcaps.txt*.
 
 > import System.IO
@@ -1434,7 +1434,7 @@ l'utilisateur des choses une fois lancé. Et quel meilleur moyen pour
 l'utilisateur d'indiquer ce qu'il veut au programme que de donner des arguments
 en ligne de commande !
 
-Le module `System.Environment` a deux actions I/O cool. L'une est `getArgs`,
+Le module `System.Environment` a deux actions I/O cooles. L'une est `getArgs`,
 qui a pour type `getArgs :: IO [String]` et est une action I/O qui va récupérer
 les arguments du programme et les encapsuler dans son résultat sous forme d'une
 liste. `getProgName` a pour type `getProgName :: IO String` et est une action
@@ -1468,7 +1468,7 @@ Finalement, on affiche aussi le nom du programme. Compilons cela comme
 > arg-test
 
 Bien. Armé de cette connaissance, vous pouvez créer des applications en ligne
-de commande plutôt cool. En fait, créons-en une dès maintenant. Dans la section
+de commande plutôt cooles. En fait, créons-en une dès maintenant. Dans la section
 précédente, nous avions créé deux programmes séparés pour ajouter des tâches et
 en supprimer. Maintenant, on va faire cela en un seul programme, et ce qu'il
 fera dépendra des arguments. On va aussi le faire de manière à ce qu'il puisse
